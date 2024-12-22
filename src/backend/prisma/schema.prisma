@@ -1,0 +1,21 @@
+
+
+datasource db  { 
+  provider = "mysql" 
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+
+}
+
+model todo {
+  id Int @id @default(autoincrement()) 
+  task String
+  status Boolean 
+}
+
+
+
+

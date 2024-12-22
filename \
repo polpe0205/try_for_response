@@ -1,0 +1,16 @@
+import React from "react";
+function Clock () {
+  console.log('hi') ; 
+  return(
+    <>
+    <p>this is the date of today</p>
+    <p></p>  
+    </>
+  );
+}
+
+
+
+
+
+export default  Clock
