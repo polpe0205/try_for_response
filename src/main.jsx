@@ -27,7 +27,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <Header/>
       <div className="main">
       <Banner/>
-      <Data/>
       </div>
   </React.StrictMode>
   </ApolloProvider>

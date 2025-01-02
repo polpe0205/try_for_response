@@ -8,7 +8,7 @@ const prisma = new PrismaClient();
 
 
 
-const typeDefs = `
+const typeDefs = gql`
   type try1{ 
     id : Int
     message: String
@@ -17,15 +17,33 @@ const typeDefs = `
 
   type Query {
     alltry1: [try1!]
-  } 
+  }
+  
+  type Mutation {
+    addTodo(message: String!): try1 
+  }
 
 
 `;
+
 
 const resolvers = {
   Query: {
     alltry1: async () => await prisma.try1.findMany()
   },
+  
+  Mutation : { 
+
+  addTodo: async(_, {message} ) => { 
+     const newTodo = await prisma.try1.create({
+        data: {
+          message, 
+          status: false, 
+        }
+      });
+      return newTodo ;
+    }
+  }
 
 
 }

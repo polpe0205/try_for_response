@@ -10,5 +10,5 @@ datasource db {
 model try1 {
   id      Int     @id @default(autoincrement())
   message String
-  status  Boolean
+  status  Boolean @default(false)
 }

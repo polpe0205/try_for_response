@@ -1,26 +1,53 @@
-import React from 'react'
+import React, { useState }from 'react' ; 
+import { useMutation, gql} from '@apollo/client' ; 
 
 
-
-
-
-
-
-
-
-
-function Banner ( ) { 
-  return( 
+const ADD_TODO = gql` 
+  mutation AddTodo($message: String! ) {
+   addTodo(message: $message) {
+     id 
+     message 
+     status
+    }
+}
   
-  <form>
-    <input type="text" name="goal" placeholder="goal" />
-    <input type="radio" name="priority" value=""/>
-    <button type="Submit">send</button> 
+`
+;
+
+
+
+
+
+
+
+
+export function Banner ( ) { 
+  const [message, setMessage] = useState('');
+  const [addTodo, {data , loading , error }] = useMutation(ADD_TODO);
+  
+
+  const handleSubmit = async(e)  => {
+    e.preventDefault(); 
+    try {
+      await addTodo({ variables: {message : message}}); 
+      alert("goal setted ") ; 
+    }catch(err) {
+      console.error(err); 
+
+    }
+  };
+
+  return( 
+    
+  
+  <form onSubmit={handleSubmit}>
+    <input id="goal"type="text" value={message} onChange={ (e) => {setMessage(e.target.value)}} placeholder="goal"/>
+    <button type="Submit" >send</button>
+    {error && <p>Error: {error.message}</p>}
   </form>
  
   ); 
 }
-
 
 
 /* 
