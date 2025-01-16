@@ -5,7 +5,7 @@ import Header from"./Header.jsx";
 import {Data} from "./Data.jsx";
 import fetch from 'cross-fetch' ; 
 import Banner from  './Banner.jsx'; 
-
+  import Todo from './Todo.jsx'; 
 // import './index.css'
 
 
@@ -25,8 +25,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <ApolloProvider client={client}> 
   <React.StrictMode>
       <Header/>
+      <Todo/>
       <div className="main">
-      <Banner/>
+
       </div>
   </React.StrictMode>
   </ApolloProvider>
