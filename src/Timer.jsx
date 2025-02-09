@@ -1,7 +1,7 @@
 import React, {useRef, useState, useEffect} from "react" ; 
 
 export default function Timer() {
-  const [timer, setTimer] = useState(120); 
+  const [timer, setTimer] = useState(0); 
   const [status, setStatus] = useState(false) ; 
   const [id , setId] = useState(null);
   const [ min , setMin] = useState(0);
@@ -9,11 +9,13 @@ export default function Timer() {
   const [sec ,setSec] = useState(0);
 
 
-
+  
   const [showClear, setShowClear]= useState(false);
   const [showInputTimer, setShowInputTimer]= useState(true); 
   const [showTimer , setShowTimer] = useState(false);
   const [showStop , setShowStop] = useState(false); 
+
+  const [ st , setSt] = useState("stop"); //
 
   useEffect(() => {
     
@@ -43,8 +45,15 @@ export default function Timer() {
 
   
 
-  function  Clear() { 
-       setTimer(0);
+  function  Clear() {
+         
+       setTimer(0); // stop the timer and it set it to zero 
+       //clears the scree timer 
+       setMin(0);
+       setSec(0);
+       
+       setShowTimer(!showTimer);
+       setShowStop(!setShowStop);
        setShowClear(!showClear);
        setShowInputTimer(!showInputTimer);
    } 
@@ -76,15 +85,24 @@ export default function Timer() {
   }
   
   function startStop() {
+    setShowClear(!showClear);
+
     if(status == true ) {
-      setStatus(false);
-      setShowClear(true);
-    }
+      setStatus(false); // stop the timer
+      setShowStop(true);
+      setSt("start");
+    } 
     else{
-      setStatus(true);
-      setShowClear(false);
-    }
-  }
+      setStatus(true); // start the timer 
+      setShowStop(true);
+      setSt("stop");
+    }/*
+    setStatus(!status);
+    setShowClear(!showClear);
+    setShowStop(!showStop);
+    (status == true ) ? setSt("Start") : setSt("Stop");
+    */
+  } 
 
   return(
     <div className="timer">
@@ -92,8 +110,8 @@ export default function Timer() {
     {showTimer && <h1>{min}:{sec}</h1>}
     {showInputTimer && <InputTimer/>}
     <div>
-    {showClear && <button onClick={Clear()}></button>}  
-    {showStop && <button onClick={() => {startStop();}}>stop</button>}
+    {showClear && <button onClick={() => {Clear();}}>clear</button> }  
+    {showStop && <button onClick={() => {startStop();}}>{st}</button>}
     </div>
   </div>
   );
