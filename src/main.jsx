@@ -1,15 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ApolloProvider, ApolloClient, InMemoryCache,HttpLink} from"@apollo/client";
-import Header from"./Header.jsx";
-import {Data} from "./Data.jsx";
-import fetch from 'cross-fetch' ; 
-import Banner from  './Banner.jsx'; 
-  import Todo from './Todo.jsx'; 
-// import './index.css'
-
-
-
+import Header from"./other/Header.jsx";
+import fetch from 'cross-fetch' ;
+import "./site.css";
+import Timer from "./Timer.jsx";
+import Clock from "./Clock.jsx";
 
 const client = new ApolloClient({
 
@@ -25,10 +21,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <ApolloProvider client={client}> 
   <React.StrictMode>
       <Header/>
-      <Todo/>
-      <div className="main">
-
-      </div>
+      <Clock/>
+      <Timer/>
   </React.StrictMode>
   </ApolloProvider>
 ); 

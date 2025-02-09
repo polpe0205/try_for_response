@@ -196,3 +196,43 @@ button{
   display:flex; 
   margin-bottom:0px ; 
 }
+
+input::placeholder{
+  color : white ; 
+}
+
+.timer{ 
+  display:flex ;
+  align-items: center ;
+  flex-direction: column ;
+  
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
