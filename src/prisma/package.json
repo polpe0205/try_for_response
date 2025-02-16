@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev" : "node main.js",
+    "dev": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,8 +12,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@prisma/client": "^6.1.0",
+    "@prisma/client": "^6.3.1",
     "apollo-server": "^3.13.0",
-    "prisma": "^5.21.1"
+    "prisma": "^5.22.0",
+    "prisma-client": "^0.0.0"
   }
 }

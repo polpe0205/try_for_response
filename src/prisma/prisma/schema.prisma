@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -7,8 +8,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model try1 {
-  id      Int     @id @default(autoincrement())
-  message String
-  status  Boolean @default(false)
+model usr {
+  id       Int    @id @unique @default(autoincrement())
+  name     String @unique
+  password String
+
+  todos  todo[]
+  timers timer[]
+}
+
+model todo {
+  id             Int      @id @default(autoincrement())
+  goal           String
+  status         Boolean  @default(false)
+  creationDate   DateTime
+  expirationDate DateTime
+  ownerId        Int
+  fatherId       Int?
+
+  father todo?   @relation("fatherRelation", fields: [fatherId], references: [id])
+  child  todo[]  @relation("fatherRelation")
+  owner  usr     @relation(fields: [ownerId], references: [id])
+  timers timer[]
+}
+
+model timer {
+  id         Int      @id @default(autoincrement())
+  timerStart Int
+  timeLeft   Int
+  date       DateTime
+  ownerId    Int
+  fatherId   Int?
+
+  owner  usr   @relation(fields: [ownerId], references: [id])
+  father todo? @relation(fields: [fatherId], references: [id])
 }
